@@ -1,0 +1,51 @@
+#command-output-area {
+  background-color: black;
+  color: white;
+  height: 1200px;
+  width: 1400px;
+  font-family: "Segoe UI";
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+.command-input-row {
+  margin: 0 auto;
+}
+
+.command-output-row {
+  margin: 0 auto;
+}
+
+.command-prompt {
+  color: green;
+  width: min-content;
+  display: inline;
+}
+
+.command-result {
+  color: cyan;
+  width: min-content;
+  display: inline;
+}
+
+.command-input-area {
+  display: inline;
+  contenteditable: true;
+  background-color: black;
+  caret-color: transparent;
+  color: green;
+  border: none;
+  outline: none;
+  font-family: "Segoe UI"
+}
+
+.command-output-area {
+  display: inline;
+  contenteditable: true;
+  background-color: black;
+  caret-color: transparent;
+  color: cyan;
+  border: none;
+  outline: none;
+  font-family: "Segoe UI"
+}
