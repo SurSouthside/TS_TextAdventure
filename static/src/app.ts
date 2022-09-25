@@ -1,6 +1,6 @@
-//import {Game} from './game'
+import {Game} from './game'
 
-//var theGame;
+var theGame;
 
 let output = (document.getElementById("command-output-area") as HTMLDivElement);
 
@@ -10,7 +10,7 @@ let commandResult = '>';
 
 let commandInputs = document.getElementsByClassName("command-input-area");
 
-function receive_next_input(et) {
+function receive_next_input(et: EventTarget | null) {
   (et as HTMLInputElement).setAttribute('readonly', 'true')
   var theValue = (et as HTMLInputElement).value;
   let commandOutputRowDiv = document.createElement('div');
@@ -46,7 +46,8 @@ output.addEventListener('keydown', function(event) {
 });
 
 window.onload = function () {
-  //theGame = new Game();
+  theGame = new Game();
+  console.log("New Game Started")
   let welcomePromptDiv = document.createElement('div');
   welcomePromptDiv.innerHTML = welcomePrompt;
   output.appendChild(welcomePromptDiv);
