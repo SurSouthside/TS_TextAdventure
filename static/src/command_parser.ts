@@ -13,5 +13,5 @@ export class CommandParser {
 
         return CommandParser.instance;
     }
-  
+
 }

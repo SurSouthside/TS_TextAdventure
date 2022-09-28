@@ -2,7 +2,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const game_1 = require("./game");
+const command_parser_1 = require("./command_parser");
 var theGame;
+var theCommandParser;
 let output = document.getElementById("command-output-area");
 let welcomePrompt = 'Welcome to TS Text Adventure' + '<br/>' + 'New Game or Continue?' + '<br/>' + 'Enter your desired command at the >> prompt' + '<br/>';
 let commandPrompt = '>>';
@@ -11,6 +13,7 @@ let commandInputs = document.getElementsByClassName("command-input-area");
 function receive_next_input(et) {
     et.setAttribute('readonly', 'true');
     var theValue = et.value;
+    //TODO: Call command parser
     let commandOutputRowDiv = document.createElement('div');
     commandOutputRowDiv.setAttribute('class', 'command-output-row');
     output.appendChild(commandOutputRowDiv);
@@ -44,6 +47,8 @@ output.addEventListener('keydown', function (event) {
 window.onload = function () {
     theGame = game_1.Game.getInstance();
     console.log("Game Started");
+    theCommandParser = command_parser_1.CommandParser.getInstance();
+    console.log("Command parser started");
     let welcomePromptDiv = document.createElement('div');
     welcomePromptDiv.innerHTML = welcomePrompt;
     output.appendChild(welcomePromptDiv);
@@ -60,7 +65,7 @@ window.onload = function () {
     commandInput.focus();
 };
 
-},{"./game":3}],2:[function(require,module,exports){
+},{"./command_parser":2,"./game":3}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommandParser = void 0;
@@ -81,11 +86,9 @@ exports.CommandParser = CommandParser;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Game = void 0;
-const command_parser_1 = require("./command_parser");
 class Game {
     constructor() {
         console.log("Game object created");
-        command_parser_1.CommandParser.getInstance();
     }
     static getInstance() {
         if (!Game.instance) {
@@ -96,4 +99,4 @@ class Game {
 }
 exports.Game = Game;
 
-},{"./command_parser":2}]},{},[1]);
+},{}]},{},[1]);

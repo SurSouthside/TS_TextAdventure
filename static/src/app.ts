@@ -1,6 +1,8 @@
 import {Game} from './game'
+import {CommandParser} from './command_parser'
 
-var theGame;
+var theGame : Game;
+var theCommandParser : CommandParser;
 
 let output = (document.getElementById("command-output-area") as HTMLDivElement);
 
@@ -13,6 +15,7 @@ let commandInputs = document.getElementsByClassName("command-input-area");
 function receive_next_input(et: EventTarget | null) {
   (et as HTMLInputElement).setAttribute('readonly', 'true')
   var theValue = (et as HTMLInputElement).value;
+  //TODO: Call command parser
   let commandOutputRowDiv = document.createElement('div');
   commandOutputRowDiv.setAttribute('class', 'command-output-row');
   output.appendChild(commandOutputRowDiv);
@@ -48,6 +51,8 @@ output.addEventListener('keydown', function(event) {
 window.onload = function () {
   theGame = Game.getInstance();
   console.log("Game Started");
+  theCommandParser = CommandParser.getInstance();
+  console.log("Command parser started");
   let welcomePromptDiv = document.createElement('div');
   welcomePromptDiv.innerHTML = welcomePrompt;
   output.appendChild(welcomePromptDiv);
