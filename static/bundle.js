@@ -60,13 +60,32 @@ window.onload = function () {
     commandInput.focus();
 };
 
-},{"./game":2}],2:[function(require,module,exports){
+},{"./game":3}],2:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CommandParser = void 0;
+class CommandParser {
+    constructor() {
+        console.log("Command parser object created");
+    }
+    static getInstance() {
+        if (!CommandParser.instance) {
+            CommandParser.instance = new CommandParser();
+        }
+        return CommandParser.instance;
+    }
+}
+exports.CommandParser = CommandParser;
+
+},{}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Game = void 0;
+const command_parser_1 = require("./command_parser");
 class Game {
     constructor() {
         console.log("Game object created");
+        command_parser_1.CommandParser.getInstance();
     }
     static getInstance() {
         if (!Game.instance) {
@@ -77,4 +96,4 @@ class Game {
 }
 exports.Game = Game;
 
-},{}]},{},[1]);
+},{"./command_parser":2}]},{},[1]);
