@@ -42,8 +42,8 @@ output.addEventListener('keydown', function (event) {
     }
 });
 window.onload = function () {
-    theGame = new game_1.Game();
-    console.log("New Game Started");
+    theGame = game_1.Game.getInstance();
+    console.log("Game Started");
     let welcomePromptDiv = document.createElement('div');
     welcomePromptDiv.innerHTML = welcomePrompt;
     output.appendChild(welcomePromptDiv);
@@ -65,6 +65,15 @@ window.onload = function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Game = void 0;
 class Game {
+    constructor() {
+        console.log("Game object created");
+    }
+    static getInstance() {
+        if (!Game.instance) {
+            Game.instance = new Game();
+        }
+        return Game.instance;
+    }
 }
 exports.Game = Game;
 

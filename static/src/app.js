@@ -41,8 +41,8 @@ output.addEventListener('keydown', function (event) {
     }
 });
 window.onload = function () {
-    theGame = new game_1.Game();
-    console.log("New Game Started");
+    theGame = game_1.Game.getInstance();
+    console.log("Game Started");
     let welcomePromptDiv = document.createElement('div');
     welcomePromptDiv.innerHTML = welcomePrompt;
     output.appendChild(welcomePromptDiv);
