@@ -13,7 +13,6 @@ let commandInputs = document.getElementsByClassName("command-input-area");
 function receive_next_input(et) {
     et.setAttribute('readonly', 'true');
     var theValue = et.value;
-    //TODO: Call command parser
     let commandOutputRowDiv = document.createElement('div');
     commandOutputRowDiv.setAttribute('class', 'command-output-row');
     output.appendChild(commandOutputRowDiv);
@@ -40,6 +39,7 @@ function receive_next_input(et) {
 output.addEventListener('keydown', function (event) {
     if (event.target.classList.contains('command-input-area')) {
         if (event.key === "Enter") {
+            theCommandParser.parse_command(event.target.value);
             receive_next_input(event.target);
         }
     }
@@ -78,6 +78,9 @@ class CommandParser {
             CommandParser.instance = new CommandParser();
         }
         return CommandParser.instance;
+    }
+    parse_command(command) {
+        return '';
     }
 }
 exports.CommandParser = CommandParser;

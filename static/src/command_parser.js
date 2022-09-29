@@ -11,5 +11,8 @@ class CommandParser {
         }
         return CommandParser.instance;
     }
+    parse_command(command) {
+        return '';
+    }
 }
 exports.CommandParser = CommandParser;

@@ -14,4 +14,8 @@ export class CommandParser {
         return CommandParser.instance;
     }
 
+    public parse_command(command: String) {
+        return '';
+    }
+
 }

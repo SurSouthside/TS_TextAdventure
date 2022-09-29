@@ -15,7 +15,6 @@ let commandInputs = document.getElementsByClassName("command-input-area");
 function receive_next_input(et: EventTarget | null) {
   (et as HTMLInputElement).setAttribute('readonly', 'true')
   var theValue = (et as HTMLInputElement).value;
-  //TODO: Call command parser
   let commandOutputRowDiv = document.createElement('div');
   commandOutputRowDiv.setAttribute('class', 'command-output-row');
   output.appendChild(commandOutputRowDiv);
@@ -43,6 +42,7 @@ function receive_next_input(et: EventTarget | null) {
 output.addEventListener('keydown', function(event) {
   if((event.target as HTMLInputElement).classList.contains('command-input-area')){
     if (event.key==="Enter") {
+      theCommandParser.parse_command((event.target as HTMLInputElement).value as String);
       receive_next_input(event.target);
     }
   }
