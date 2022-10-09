@@ -15,7 +15,13 @@ export class CommandParser {
     }
 
     public parse_command(command: String) {
-        return '';
+        console.log("You entered: " + command);
+        //TODO: Replace multiple whitespace characters with one?
+        var split_command = command.split(" ");
+        console.log("Separate commands entered: ");
+        split_command.forEach (function (value, index) {
+            console.log(index + ":" + value);
+        });
     }
 
 }
