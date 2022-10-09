@@ -4,6 +4,8 @@ import {CommandParser} from './command_parser'
 var theGame : Game;
 var theCommandParser : CommandParser;
 
+var command_response: String;
+
 let output = (document.getElementById("command-output-area") as HTMLDivElement);
 
 let welcomePrompt = 'Welcome to TS Text Adventure' + '<br/>' + 'New Game or Continue?' + '<br/>' + 'Enter your desired command at the >> prompt' + '<br/>';
@@ -42,7 +44,7 @@ function receive_next_input(et: EventTarget | null) {
 output.addEventListener('keydown', function(event) {
   if((event.target as HTMLInputElement).classList.contains('command-input-area')){
     if (event.key==="Enter") {
-      theCommandParser.parse_command((event.target as HTMLInputElement).value as String);
+      command_response = theCommandParser.parse_command((event.target as HTMLInputElement).value as String);
       receive_next_input(event.target);
     }
   }

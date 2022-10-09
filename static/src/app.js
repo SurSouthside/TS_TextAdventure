@@ -4,6 +4,7 @@ const game_1 = require("./game");
 const command_parser_1 = require("./command_parser");
 var theGame;
 var theCommandParser;
+var command_response;
 let output = document.getElementById("command-output-area");
 let welcomePrompt = 'Welcome to TS Text Adventure' + '<br/>' + 'New Game or Continue?' + '<br/>' + 'Enter your desired command at the >> prompt' + '<br/>';
 let commandPrompt = '>>';
@@ -38,7 +39,7 @@ function receive_next_input(et) {
 output.addEventListener('keydown', function (event) {
     if (event.target.classList.contains('command-input-area')) {
         if (event.key === "Enter") {
-            theCommandParser.parse_command(event.target.value);
+            command_response = theCommandParser.parse_command(event.target.value);
             receive_next_input(event.target);
         }
     }

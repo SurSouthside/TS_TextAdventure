@@ -12,6 +12,7 @@ class CommandParser {
         return CommandParser.instance;
     }
     parse_command(command) {
+        var returned_command;
         console.log("You entered: " + command);
         //TODO: Replace multiple whitespace characters with one?
         var split_command = command.split(" ");
@@ -19,6 +20,31 @@ class CommandParser {
         split_command.forEach(function (value, index) {
             console.log(index + ":" + value);
         });
+        var first_command = split_command[0];
+        console.log("First command entered: " + first_command);
+        switch (first_command) {
+            case "attack": {
+                returned_command = "You attack";
+                console.log(returned_command);
+                break;
+            }
+            case "cast": {
+                returned_command = "You cast a spell";
+                console.log(returned_command);
+                break;
+            }
+            case "use": {
+                returned_command = "You use an item";
+                console.log(returned_command);
+                break;
+            }
+            default: {
+                returned_command = "Command not found";
+                console.log(returned_command);
+                break;
+            }
+        }
+        return returned_command;
     }
 }
 exports.CommandParser = CommandParser;
