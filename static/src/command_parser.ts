@@ -14,8 +14,8 @@ export class CommandParser {
         return CommandParser.instance;
     }
 
-    public parse_command(command: String): String {
-        var returned_command: String;
+    public parse_command(command: String): string {
+        var returned_command: string;
         console.log("You entered: " + command);
         //TODO: Replace multiple whitespace characters with one?
         var split_command = command.split(" ");

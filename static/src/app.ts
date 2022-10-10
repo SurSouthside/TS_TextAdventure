@@ -4,7 +4,7 @@ import {CommandParser} from './command_parser'
 var theGame : Game;
 var theCommandParser : CommandParser;
 
-var command_response: String;
+var command_response: string;
 
 let output = (document.getElementById("command-output-area") as HTMLDivElement);
 
@@ -14,7 +14,7 @@ let commandResult = '>';
 
 let commandInputs = document.getElementsByClassName("command-input-area");
 
-function receive_next_input(et: EventTarget | null) {
+function receive_next_input(et: EventTarget | null, command_response: string) {
   (et as HTMLInputElement).setAttribute('readonly', 'true')
   var theValue = (et as HTMLInputElement).value;
   let commandOutputRowDiv = document.createElement('div');
@@ -25,7 +25,7 @@ function receive_next_input(et: EventTarget | null) {
   commandDisplayDiv.setAttribute('class', 'command-result');
   commandOutputRowDiv.appendChild(commandDisplayDiv);
   let commandResultDiv = document.createElement('div');
-  commandResultDiv.innerHTML = theValue;
+  commandResultDiv.innerHTML = command_response;
   commandResultDiv.setAttribute('class', 'command-output-area');
  commandOutputRowDiv.appendChild(commandResultDiv);
  let commandInputRowDiv = document.createElement('div');
@@ -45,7 +45,7 @@ output.addEventListener('keydown', function(event) {
   if((event.target as HTMLInputElement).classList.contains('command-input-area')){
     if (event.key==="Enter") {
       command_response = theCommandParser.parse_command((event.target as HTMLInputElement).value as String);
-      receive_next_input(event.target);
+      receive_next_input(event.target, command_response);
     }
   }
 });

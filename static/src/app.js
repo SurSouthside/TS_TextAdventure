@@ -10,7 +10,7 @@ let welcomePrompt = 'Welcome to TS Text Adventure' + '<br/>' + 'New Game or Cont
 let commandPrompt = '>>';
 let commandResult = '>';
 let commandInputs = document.getElementsByClassName("command-input-area");
-function receive_next_input(et) {
+function receive_next_input(et, command_response) {
     et.setAttribute('readonly', 'true');
     var theValue = et.value;
     let commandOutputRowDiv = document.createElement('div');
@@ -21,7 +21,7 @@ function receive_next_input(et) {
     commandDisplayDiv.setAttribute('class', 'command-result');
     commandOutputRowDiv.appendChild(commandDisplayDiv);
     let commandResultDiv = document.createElement('div');
-    commandResultDiv.innerHTML = theValue;
+    commandResultDiv.innerHTML = command_response;
     commandResultDiv.setAttribute('class', 'command-output-area');
     commandOutputRowDiv.appendChild(commandResultDiv);
     let commandInputRowDiv = document.createElement('div');
@@ -40,7 +40,7 @@ output.addEventListener('keydown', function (event) {
     if (event.target.classList.contains('command-input-area')) {
         if (event.key === "Enter") {
             command_response = theCommandParser.parse_command(event.target.value);
-            receive_next_input(event.target);
+            receive_next_input(event.target, command_response);
         }
     }
 });
