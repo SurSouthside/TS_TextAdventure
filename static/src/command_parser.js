@@ -26,16 +26,19 @@ class CommandParser {
             case "attack": {
                 returned_command = "You attack";
                 console.log(returned_command);
+                var attack_result = this.parse_attack_command(split_command);
                 break;
             }
             case "cast": {
                 returned_command = "You cast a spell";
                 console.log(returned_command);
+                var cast_result = this.parse_cast_command(split_command);
                 break;
             }
             case "use": {
                 returned_command = "You use an item";
                 console.log(returned_command);
+                var use_result = this.parse_use_command(split_command);
                 break;
             }
             default: {
@@ -45,6 +48,15 @@ class CommandParser {
             }
         }
         return returned_command;
+    }
+    parse_attack_command(attack_pieces) {
+        return '';
+    }
+    parse_cast_command(cast_pieces) {
+        return '';
+    }
+    parse_use_command(use_pieces) {
+        return '';
     }
 }
 exports.CommandParser = CommandParser;
