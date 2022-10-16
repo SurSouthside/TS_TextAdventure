@@ -14,8 +14,8 @@ class CommandParser {
     parse_command(command) {
         var returned_command;
         console.log("You entered: " + command);
-        //TODO: Replace multiple whitespace characters with one?
-        var split_command = command.split(" ");
+        //TODO: Use regex to capture all whitespace between words
+        var split_command = command.split(/[\s]+/);
         console.log("Separate commands entered: ");
         split_command.forEach(function (value, index) {
             console.log(index + ":" + value);
