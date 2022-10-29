@@ -23,33 +23,42 @@ class CommandParser {
         var first_command = split_command[0];
         console.log("First command entered: " + first_command);
         switch (first_command) {
+            case "help": {
+                returned_command = "You get help";
+                break;
+            }
+            case "inventory": {
+                returned_command = "You search your inventory";
+                break;
+            }
+            case "status": {
+                returned_command = "You check your status";
+                break;
+            }
             case "attack": {
                 returned_command = "You attack";
-                console.log(returned_command);
                 var attack_result = this.parse_attack_command(split_command.slice(1));
                 returned_command = attack_result;
                 break;
             }
             case "cast": {
                 returned_command = "You cast a spell";
-                console.log(returned_command);
                 var cast_result = this.parse_cast_command(split_command.slice(1));
                 returned_command = cast_result;
                 break;
             }
             case "use": {
                 returned_command = "You use an item";
-                console.log(returned_command);
                 var use_result = this.parse_use_command(split_command.slice(1));
                 returned_command = use_result;
                 break;
             }
             default: {
                 returned_command = "Command not found";
-                console.log(returned_command);
                 break;
             }
         }
+        console.log(returned_command);
         return returned_command;
     }
     parse_attack_command(attack_pieces) {
