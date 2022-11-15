@@ -92,6 +92,7 @@ class CommandParser {
         var first_command = split_command[0];
         console.log("First command entered: " + first_command);
         switch (first_command) {
+            //General commands
             case "help": {
                 returned_command = "You get help";
                 break;
@@ -104,6 +105,7 @@ class CommandParser {
                 returned_command = "You check your status";
                 break;
             }
+            //Battle commands
             case "attack": {
                 returned_command = "You attack";
                 var attack_result = this.parse_attack_command(split_command.slice(1));
@@ -120,6 +122,32 @@ class CommandParser {
                 returned_command = "You use an item";
                 var use_result = this.parse_use_command(split_command.slice(1));
                 returned_command = use_result;
+                break;
+            }
+            //Explore commands
+            case "shop": {
+                returned_command = "You enter a shop";
+                break;
+            }
+            case "search": {
+                returned_command = "You search";
+                break;
+            }
+            //Shop commands
+            case "buy": {
+                returned_command = "You buy an item";
+                break;
+            }
+            case "sell": {
+                returned_command = "You sell an item";
+                break;
+            }
+            case "view": {
+                returned_command = "You view the shop inventory";
+                break;
+            }
+            case "examine": {
+                returned_command = "You examine an item";
                 break;
             }
             default: {
