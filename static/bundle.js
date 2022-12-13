@@ -135,11 +135,15 @@ class CommandParser {
             }
             //Shop commands
             case "buy": {
-                returned_command = "You buy an item";
+                returned_command = "You buy";
+                var buy_result = this.parse_buy_command(split_command.slice(1));
+                returned_command = buy_result;
                 break;
             }
             case "sell": {
-                returned_command = "You sell an item";
+                returned_command = "You sell";
+                var sell_result = this.parse_sell_command(split_command.slice(1));
+                returned_command = sell_result;
                 break;
             }
             case "view": {
@@ -148,6 +152,8 @@ class CommandParser {
             }
             case "examine": {
                 returned_command = "You examine an item";
+                var examine_result = this.parse_examine_command(split_command.slice(1));
+                returned_command = examine_result;
                 break;
             }
             default: {
@@ -173,7 +179,22 @@ class CommandParser {
     parse_use_command(use_pieces) {
         var use_target = use_pieces[0];
         console.log("Use target: " + use_target);
-        return "You use " + use_target;
+        return "You use the " + use_target;
+    }
+    parse_buy_command(buy_pieces) {
+        var buy_target = buy_pieces[0];
+        console.log("Buy target: " + buy_target);
+        return "You buy the " + buy_target;
+    }
+    parse_sell_command(sell_pieces) {
+        var sell_target = sell_pieces[0];
+        console.log("Sell target: " + sell_target);
+        return "You sell the " + sell_target;
+    }
+    parse_examine_command(examine_pieces) {
+        var examine_target = examine_pieces[0];
+        console.log("Examine target: " + examine_target);
+        return "You examine the " + examine_target;
     }
 }
 exports.CommandParser = CommandParser;
