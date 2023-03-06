@@ -1,3 +1,5 @@
+import { Game } from "./game";
+
 export class CommandParser {
 
     private static instance: CommandParser;
@@ -14,11 +16,39 @@ export class CommandParser {
         return CommandParser.instance;
     }
 
-    public parse_command(command: String): string {
+    public parse_command(command: string): string {
         var returned_command: string;
         console.log("You entered: " + command);
+        var gameState = Game.getInstance().gameState;
+        console.log("Game state for parser is " + gameState);
+        switch(gameState){
+            case 'Started': {
+                console.log("Parsing Started commands");
+                returned_command = this.parse_started_command(command);
+                break;
+            }
+            default: {
+                console.log("Parsing Running commands");
+                returned_command = this.parse_running_command(command);
+                break;
+            }
+        }
         //TODO: Use regex to capture all whitespace between words
-        var split_command = command.split(/[\s]+/);
+
+        return returned_command;
+    }
+
+    public parse_started_command(startedCommand: string): string{
+        if(startedCommand == 'New')
+        {
+            Game.getInstance().startNewGame();
+        }
+        return '';
+    }
+
+    public parse_running_command(runningCommand: string): string{
+        var returned_command: string;
+        var split_command = runningCommand.split(/[\s]+/);
         console.log("Separate commands entered: ");
         split_command.forEach (function (value, index) {
             console.log(index + ":" + value);
@@ -99,9 +129,11 @@ export class CommandParser {
                 returned_command = "Command not found";
                 break;
             }
-        }
+        }   
+        
         console.log(returned_command);
-        return returned_command;
+        return returned_command;        
+
     }
 
     public parse_attack_command(attack_pieces: string[]): string {

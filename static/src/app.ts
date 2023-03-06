@@ -1,8 +1,9 @@
-import {Game} from './game'
-import {CommandParser} from './command_parser'
+import { Game } from './game'
+import { CommandParser } from './command_parser'
+import { Entity } from './entity'
 
-var theGame : Game;
-var theCommandParser : CommandParser;
+var theGame: Game;
+var theCommandParser: CommandParser;
 
 var command_response: string;
 
@@ -27,25 +28,30 @@ function receive_next_input(et: EventTarget | null, command_response: string) {
   let commandResultDiv = document.createElement('div');
   commandResultDiv.innerHTML = command_response;
   commandResultDiv.setAttribute('class', 'command-output-area');
- commandOutputRowDiv.appendChild(commandResultDiv);
- let commandInputRowDiv = document.createElement('div');
- commandInputRowDiv.setAttribute('class', 'command-input-row');
- output.appendChild(commandInputRowDiv);
- let commandPromptDiv = document.createElement('div');
- commandPromptDiv.innerHTML = commandPrompt;
- commandPromptDiv.setAttribute('class', 'command-prompt');
- commandInputRowDiv.appendChild(commandPromptDiv);
- let commandInput = document.createElement('input');
- commandInput.setAttribute('class', 'command-input-area');
- commandInputRowDiv.appendChild(commandInput);
- commandInput.focus();
+  commandOutputRowDiv.appendChild(commandResultDiv);
+  let commandInputRowDiv = document.createElement('div');
+  commandInputRowDiv.setAttribute('class', 'command-input-row');
+  output.appendChild(commandInputRowDiv);
+  let commandPromptDiv = document.createElement('div');
+  commandPromptDiv.innerHTML = commandPrompt;
+  commandPromptDiv.setAttribute('class', 'command-prompt');
+  commandInputRowDiv.appendChild(commandPromptDiv);
+  let commandInput = document.createElement('input');
+  commandInput.setAttribute('class', 'command-input-area');
+  commandInputRowDiv.appendChild(commandInput);
+  commandInput.focus();
 }
 
-output.addEventListener('keydown', function(event) {
-  if((event.target as HTMLInputElement).classList.contains('command-input-area')){
-    if (event.key==="Enter") {
-      command_response = theCommandParser.parse_command((event.target as HTMLInputElement).value as String);
-      receive_next_input(event.target, command_response);
+output.addEventListener('keydown', function (event) {
+  if ((event.target as HTMLInputElement).classList.contains('command-input-area')) {
+    if (event.key === "Enter") {
+      command_response = theCommandParser.parse_command((event.target as HTMLInputElement).value as string);
+      if(Game.getInstance().gameState == "New") {
+        console.log("In new game state");
+      }
+      if(Game.getInstance().gameState == 'Running') {
+        receive_next_input(event.target, command_response);
+      }
     }
   }
 });
@@ -53,6 +59,7 @@ output.addEventListener('keydown', function(event) {
 window.onload = function () {
   theGame = Game.getInstance();
   console.log("Game Started");
+  console.log("Game state: " + theGame.gameState)
   theCommandParser = CommandParser.getInstance();
   console.log("Command parser started");
   let welcomePromptDiv = document.createElement('div');
